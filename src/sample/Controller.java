@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,7 +22,25 @@ public class Controller {
     }
 
     private void fetchWordDefinition() {
-        // start fetch word definition task
+        try {
+            String taskResult = (new FetchWordDefinitionTask()).call();
+            myLabel.setText(taskResult);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private class FetchWordDefinitionTask extends Task<String> {
+
+        @Override
+        protected String call() throws Exception {
+
+            for (int i = 0; i < 5; i++) {
+                Thread.sleep(1000);
+            }
+
+            return "It works!";
+        }
     }
 }
 
