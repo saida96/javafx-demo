@@ -39,6 +39,7 @@ public class Controller {
                 Thread.sleep(1000);
             }
 
+            System.out.println(NetworkUtils.buildUrl("super"));
             return "It works!";
         }
     }
